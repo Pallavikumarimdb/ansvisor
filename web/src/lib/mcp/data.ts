@@ -723,9 +723,9 @@ export async function getCompetitorComparisonFor(
 
   const p_models = params.model
     ? params.model
-      .split(',')
-      .map((s) => s.trim())
-      .filter(Boolean)
+        .split(',')
+        .map((s) => s.trim())
+        .filter(Boolean)
     : null;
 
   const rpcArgs = {
@@ -1157,9 +1157,9 @@ export async function getVisibilityTrendFor(
 
   const p_models = params.model
     ? params.model
-      .split(',')
-      .map((s) => s.trim())
-      .filter(Boolean)
+        .split(',')
+        .map((s) => s.trim())
+        .filter(Boolean)
     : null;
 
   const granularity: VisibilityTrendGranularity = params.granularity ?? 'day';
