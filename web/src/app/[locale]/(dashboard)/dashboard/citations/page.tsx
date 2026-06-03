@@ -827,10 +827,10 @@ export default function CitationsPage() {
     if (!activeBrandId) return;
     getTopics(activeBrandId)
       .then(setTopics)
-      .catch(() => { });
+      .catch(() => {});
     getBrandPrompts(activeBrandId)
       .then((rows) => setPrompts(rows.map((r) => ({ id: r.id, text: r.text }))))
-      .catch(() => { });
+      .catch(() => {});
   }, [activeBrandId]);
 
   const loadData = useCallback(async () => {
