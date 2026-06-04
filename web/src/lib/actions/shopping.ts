@@ -457,7 +457,8 @@ export async function getOwnProducts(
 
   let query = supabase
     .from('prompt_result_shopping_cards')
-    .select(`
+    .select(
+      `
       id,
       created_at,
       platform,
@@ -477,7 +478,8 @@ export async function getOwnProducts(
           text
         )
       )
-    `)
+    `,
+    )
     .eq('brand_id', brandId)
     .eq('matched_brand_role', 'own');
 
@@ -510,7 +512,8 @@ export async function getCompetitorProducts(
 
   let query = supabase
     .from('prompt_result_shopping_cards')
-    .select(`
+    .select(
+      `
       id,
       created_at,
       platform,
@@ -530,7 +533,8 @@ export async function getCompetitorProducts(
           text
         )
       )
-    `)
+    `,
+    )
     .eq('brand_id', brandId)
     .eq('matched_brand_role', 'competitor');
 
@@ -560,7 +564,8 @@ export async function getCompetitorSummary(
 
   if (from) totalCardsQuery = totalCardsQuery.gte('created_at', from);
   if (expandedTo) totalCardsQuery = totalCardsQuery.lte('created_at', expandedTo);
-  if (filters.platforms?.length) totalCardsQuery = totalCardsQuery.in('platform', filters.platforms);
+  if (filters.platforms?.length)
+    totalCardsQuery = totalCardsQuery.in('platform', filters.platforms);
   if (filters.regions?.length) totalCardsQuery = totalCardsQuery.in('region', filters.regions);
 
   let competitorCardsQuery = supabase
@@ -573,7 +578,8 @@ export async function getCompetitorSummary(
   if (expandedTo) competitorCardsQuery = competitorCardsQuery.lte('created_at', expandedTo);
   if (filters.platforms?.length)
     competitorCardsQuery = competitorCardsQuery.in('platform', filters.platforms);
-  if (filters.regions?.length) competitorCardsQuery = competitorCardsQuery.in('region', filters.regions);
+  if (filters.regions?.length)
+    competitorCardsQuery = competitorCardsQuery.in('region', filters.regions);
 
   const competitorsQuery = supabase
     .from('competitors')
@@ -632,4 +638,3 @@ export async function getCompetitorSummary(
     })
     .sort((a, b) => b.card_count - a.card_count);
 }
-

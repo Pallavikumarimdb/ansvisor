@@ -74,7 +74,6 @@ import {
 import { CodeBlock, CodeBlockCode } from '@/components/ui/code-block';
 import { toCsv } from '@/lib/csv';
 
-
 const DATE_PRESETS: ShoppingDatePreset[] = ['7d', '30d', '90d', 'all'];
 
 // Theme tokens in globals.css ship as full oklch values; reference them
@@ -252,39 +251,43 @@ export default function ShoppingPage() {
                 <TabsContent value="own_products" className="space-y-6">
                   <div className="flex items-center justify-between">
                     <h2 className="text-lg font-semibold">{t('tabMyProducts')}</h2>
-                    <Button variant="outline" size="sm" onClick={() => {
-                      const headers = [
-                        'product_title',
-                        'product_brand',
-                        'impressions',
-                        'platforms',
-                        'regions',
-                        'last_price',
-                        'price_currency',
-                        'top_merchant',
-                        'last_seen',
-                      ];
-                      const rows = ownProducts.map((p) => ({
-                        product_title: p.product_title,
-                        product_brand: p.product_brand || '',
-                        impressions: p.impressions,
-                        platforms: p.platforms.join('; '),
-                        regions: p.regions.join('; '),
-                        last_price: p.last_price !== null ? p.last_price : '',
-                        price_currency: p.price_currency || '',
-                        top_merchant: p.top_merchant || '',
-                        last_seen: p.last_seen,
-                      }));
-                      const csv = toCsv(rows, headers);
-                      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-                      const url = URL.createObjectURL(blob);
-                      const link = document.createElement('a');
-                      link.href = url;
-                      const date = new Date().toISOString().slice(0, 10);
-                      link.download = `my_products_${date}.csv`;
-                      link.click();
-                      URL.revokeObjectURL(url);
-                    }}>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => {
+                        const headers = [
+                          'product_title',
+                          'product_brand',
+                          'impressions',
+                          'platforms',
+                          'regions',
+                          'last_price',
+                          'price_currency',
+                          'top_merchant',
+                          'last_seen',
+                        ];
+                        const rows = ownProducts.map((p) => ({
+                          product_title: p.product_title,
+                          product_brand: p.product_brand || '',
+                          impressions: p.impressions,
+                          platforms: p.platforms.join('; '),
+                          regions: p.regions.join('; '),
+                          last_price: p.last_price !== null ? p.last_price : '',
+                          price_currency: p.price_currency || '',
+                          top_merchant: p.top_merchant || '',
+                          last_seen: p.last_seen,
+                        }));
+                        const csv = toCsv(rows, headers);
+                        const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+                        const url = URL.createObjectURL(blob);
+                        const link = document.createElement('a');
+                        link.href = url;
+                        const date = new Date().toISOString().slice(0, 10);
+                        link.download = `my_products_${date}.csv`;
+                        link.click();
+                        URL.revokeObjectURL(url);
+                      }}
+                    >
                       <Download className="mr-2 h-4 w-4" />
                       {t('exportCsv')}
                     </Button>
@@ -306,41 +309,45 @@ export default function ShoppingPage() {
 
                   <div className="flex items-center justify-between pt-4">
                     <h2 className="text-lg font-semibold">{t('tabCompetitors')}</h2>
-                    <Button variant="outline" size="sm" onClick={() => {
-                      const headers = [
-                        'competitor_name',
-                        'product_title',
-                        'product_brand',
-                        'impressions',
-                        'platforms',
-                        'regions',
-                        'last_price',
-                        'price_currency',
-                        'top_merchant',
-                        'last_seen',
-                      ];
-                      const rows = competitorProducts.map((p) => ({
-                        competitor_name: p.competitor_name || '',
-                        product_title: p.product_title,
-                        product_brand: p.product_brand || '',
-                        impressions: p.impressions,
-                        platforms: p.platforms.join('; '),
-                        regions: p.regions.join('; '),
-                        last_price: p.last_price !== null ? p.last_price : '',
-                        price_currency: p.price_currency || '',
-                        top_merchant: p.top_merchant || '',
-                        last_seen: p.last_seen,
-                      }));
-                      const csv = toCsv(rows, headers);
-                      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-                      const url = URL.createObjectURL(blob);
-                      const link = document.createElement('a');
-                      link.href = url;
-                      const date = new Date().toISOString().slice(0, 10);
-                      link.download = `competitor_products_${date}.csv`;
-                      link.click();
-                      URL.revokeObjectURL(url);
-                    }}>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => {
+                        const headers = [
+                          'competitor_name',
+                          'product_title',
+                          'product_brand',
+                          'impressions',
+                          'platforms',
+                          'regions',
+                          'last_price',
+                          'price_currency',
+                          'top_merchant',
+                          'last_seen',
+                        ];
+                        const rows = competitorProducts.map((p) => ({
+                          competitor_name: p.competitor_name || '',
+                          product_title: p.product_title,
+                          product_brand: p.product_brand || '',
+                          impressions: p.impressions,
+                          platforms: p.platforms.join('; '),
+                          regions: p.regions.join('; '),
+                          last_price: p.last_price !== null ? p.last_price : '',
+                          price_currency: p.price_currency || '',
+                          top_merchant: p.top_merchant || '',
+                          last_seen: p.last_seen,
+                        }));
+                        const csv = toCsv(rows, headers);
+                        const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+                        const url = URL.createObjectURL(blob);
+                        const link = document.createElement('a');
+                        link.href = url;
+                        const date = new Date().toISOString().slice(0, 10);
+                        link.download = `competitor_products_${date}.csv`;
+                        link.click();
+                        URL.revokeObjectURL(url);
+                      }}
+                    >
                       <Download className="mr-2 h-4 w-4" />
                       {t('exportCsv')}
                     </Button>
@@ -819,14 +826,12 @@ function ProductTable({
         <TableBody>
           {sortedProducts.map((p, idx) => {
             const lastPriceStr =
-              p.last_price !== null
-                ? `${p.last_price} ${p.price_currency || ''}`
-                : '—';
+              p.last_price !== null ? `${p.last_price} ${p.price_currency || ''}` : '—';
             const formattedDate = p.last_seen
               ? new Date(p.last_seen).toLocaleDateString(undefined, {
-                month: 'short',
-                day: 'numeric',
-              })
+                  month: 'short',
+                  day: 'numeric',
+                })
               : '—';
 
             return (
@@ -866,9 +871,7 @@ function ProductTable({
                 </TableCell>
                 {showCompetitorName && (
                   <TableCell className="max-w-[120px] truncate">
-                    <span className="font-medium text-xs">
-                      {p.competitor_name || '—'}
-                    </span>
+                    <span className="font-medium text-xs">{p.competitor_name || '—'}</span>
                   </TableCell>
                 )}
                 <TableCell>
@@ -960,12 +963,8 @@ function CompetitorSummaryList({ t, summaries, loading }: CompetitorSummaryListP
                   </span>
                 </div>
                 <div className="text-right">
-                  <span className="text-muted-foreground text-[10px] block">
-                    {t('compSov')}
-                  </span>
-                  <span className="font-bold text-sm tabular-nums">
-                    {formatPercent(s.sov)}
-                  </span>
+                  <span className="text-muted-foreground text-[10px] block">{t('compSov')}</span>
+                  <span className="font-bold text-sm tabular-nums">{formatPercent(s.sov)}</span>
                 </div>
               </div>
               {/* Shopping SOV progress bar */}
@@ -1094,4 +1093,3 @@ function ProductAppearancesDrawer({ t, product, onOpenChange }: ProductAppearanc
     </Sheet>
   );
 }
-
