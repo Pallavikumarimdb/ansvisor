@@ -720,7 +720,8 @@ export async function getCardEligiblePrompts(
   // 2. Fetch all normalized shopping cards matching the brand and filters
   let query = supabase
     .from('prompt_result_shopping_cards')
-    .select(`
+    .select(
+      `
       id,
       matched_brand_role,
       platform,
@@ -745,7 +746,8 @@ export async function getCardEligiblePrompts(
           )
         )
       )
-    `)
+    `,
+    )
     .eq('brand_id', brandId);
 
   if (from) query = query.gte('created_at', from);
