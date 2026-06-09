@@ -42,6 +42,12 @@ test('missing key in a row produces an empty field', () => {
 });
 
 test('multiple rows are joined by newline', () => {
-  const result = toCsv([{ a: '1', b: '2' }, { a: '3', b: '4' }], ['a', 'b']);
+  const result = toCsv(
+    [
+      { a: '1', b: '2' },
+      { a: '3', b: '4' },
+    ],
+    ['a', 'b'],
+  );
   expect(result).toBe('a,b\n1,2\n3,4');
 });
